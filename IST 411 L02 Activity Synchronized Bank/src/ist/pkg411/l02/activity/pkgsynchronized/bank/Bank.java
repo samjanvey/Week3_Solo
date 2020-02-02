@@ -39,13 +39,19 @@ public class Bank
       public synchronized void transfer(int from, int to, double amount) throws InterruptedException
       {
          while (accounts[from] < amount)
+             // wait() will handle the locking and conditional evaluation
+             // until the while condition evaluates to false
             wait();
+         
+         // when condition evaluates to false, thread will continue to execute
          System.out.print(Thread.currentThread());
          accounts[from] -= amount;
          System.out.printf(" %10.2f from %d to %d", amount, from, to);
          accounts[to] += amount;
          System.out.printf(" Total Balance: %10.2f%n", getTotalBalance());
-         notifyAll();
+         
+         // necessary for program to run correctly
+         notifyAll(); // notify all other threads to check for balance updates
       }
 
 
