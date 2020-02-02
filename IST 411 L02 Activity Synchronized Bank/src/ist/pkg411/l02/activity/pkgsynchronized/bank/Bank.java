@@ -1,15 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/* 
+Project: IST 411 - Week 3 Solo Work - Synchronization
+Purpose Details: Fix a deadlocked program using synchronization for multi-threading
+Course: IST 411
+Author: Sam Janvey
+Date Developed: 2/2/20
+Last Date Changed: 2/2/20
+Revision: 
+*/
 package ist.pkg411.l02.activity.pkgsynchronized.bank;
 
 import java.util.Arrays;
 
 /**
  *
- * @author cjani
+ * @author sjanv
  */
 public class Bank 
    {
@@ -41,7 +45,7 @@ public class Bank
          System.out.printf(" %10.2f from %d to %d", amount, from, to);
          accounts[to] += amount;
          System.out.printf(" Total Balance: %10.2f%n", getTotalBalance());
-         notify();  // using notify instead of notifyall() causes the program to Hang
+         notifyAll();  // using notify instead of notifyall() causes the program to Hang
       }
 
 
